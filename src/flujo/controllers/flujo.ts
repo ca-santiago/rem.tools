@@ -3,6 +3,7 @@ import {
   Body,
   Controller,
   Get,
+  NotFoundException,
   Param,
   Post,
   Put,
@@ -46,6 +47,9 @@ export class FlujoController {
   @Get(':id')
   async getById(@Param('id') id) {
     const result = await this.flujoService.findById(id);
+    if (result == null) {
+      throw new NotFoundException();
+    }
     return result;
   }
 
