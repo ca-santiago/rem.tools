@@ -1,0 +1,25 @@
+
+.step-resolver-container {
+  display: flex;
+  flex-direction: row;
+  margin: 20px; 
+  padding: 10px;
+  background-color: rgb(243, 244, 248);
+  border-radius: 10px;
+  border: 0.5px solid rgb(225, 225, 225);
+}
+
+
+.steps-indicator-container {
+  width: 100px;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  /* background-color: green; */
+}
+
+.step-component-container {
+  flex: 2;
+  padding: 10px;
+  /* background-color: red; */
+}

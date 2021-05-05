@@ -1,27 +1,28 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   FaIdCard,
   FaFileSignature,
   FaCamera
 } from 'react-icons/fa';
+import useRenderCounter from '../hooks/useRenderCounter';
 
 export default function StepIndicator({ steps, currStep, onClickIndicator }) {
 
-  function renderStep(s) {
+  const components = useMemo(() => steps.map(function(s) {
     const active = currStep === s ? "step-indicator-active" : "";
     return (
-      <p
+      <div
         onClick={() => onClickIndicator(s) }
         className={`step-indicator ${active}`}>
-        { makeStepIcon(s)}
-      </p>
+        { makeStepIcon(s) }
+      </div>
     );
-  }
+  }), [steps]);
 
   return (
     <>
       {
-        steps.map(renderStep)
+       components
       }
     </>
   );

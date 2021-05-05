@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 
-function FormStep({onCompleted}) {
+function FormStep({ onCompleted }) {
   return (
     <>
-      <p onClick={() => onCompleted()}>Form</p>
+      <h3>Formulario de datos personales</h3>
     </>
   );
 }
 
-export default memo(FormStep);
+export default FormStep;

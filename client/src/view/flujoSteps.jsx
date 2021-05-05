@@ -3,8 +3,9 @@ import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import useQuery from '../hooks/useQuery';
+import useRenderCounter from '../hooks/useRenderCounter';
 import { FlujoServices } from '../services/flujo';
-import StepResolutionView from './stepResolution';
+import StepResolverView from './StepResolver';
 
 export default function CompleteFlujoScreen() {
   const { id } = useParams();
@@ -28,8 +29,8 @@ export default function CompleteFlujoScreen() {
     .finally(()=> {
       setLoading(false);
     })
-  }, [])
-  
+  }, []);
+
   if(loading)
     return <p>Loading...</p>;
 
@@ -40,7 +41,7 @@ export default function CompleteFlujoScreen() {
   return (
     <>
       <div className="step-container">
-        <StepResolutionView flujo={flujo} />
+        <StepResolverView flujo={flujo} />
       </div>
     </>
   );
