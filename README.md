@@ -19,7 +19,10 @@ $ npm start
 ```
 
 # Diagrams
+Sequence diagram. Request flow of creating and resolving a "flujo".
+![Sequence](./resources/sequence.jpg)
 
-![Sequence][./resources/sequence]
+Types definition
 
-![Types][./resources/types.jpg]
+![Types](./resources/types.jpg)
+
