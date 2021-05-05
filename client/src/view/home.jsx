@@ -38,35 +38,37 @@ export default function CreateFlujoScreen() {
     .then((payload)=> {
       const {id,token} = payload;
       history.push(`/flujo/${id}?token=${token}`);
+      setDisable(false);
     })
     .catch(()=> {
       console.log('Got an error while creating flujo');
-    })
-    .finally(()=> {
-      setDisable(false);
     });
   }
 
+  const submitStyle = !flujoCreator.canCreate ? "btn-disabled" : "";
+
   return (
-    <>  
-      <p>You are on the create flujo screen</p>
-      <SelectableStepButton
-        title="Validación con cámara"
-        onSelectChange={toggleSelectStep('FACE')}
-        icon={<FaCamera />}
-      />
-      <SelectableStepButton
-        title="Formulario"
-        onSelectChange={toggleSelectStep('PERSONAL_DATA')}
-        icon={<FaIdCard />}
+    <div className="home-main-contaner">
+      <h2 className="home-title">Create a new flujo</h2>
+      <div className="selectable-container">
+        <SelectableStepButton
+          title="Validación con cámara"
+          onSelectChange={toggleSelectStep('FACE')}
+          icon={<FaCamera />}
         />
-      <SelectableStepButton
-        title="Firma autógrafa"
-        onSelectChange={toggleSelectStep('SIGNATURE')}
-        icon={<FaFileSignature />}
-      />
+        <SelectableStepButton
+          title="Formulario"
+          onSelectChange={toggleSelectStep('PERSONAL_DATA')}
+          icon={<FaIdCard />}
+          />
+        <SelectableStepButton
+          title="Firma autógrafa"
+          onSelectChange={toggleSelectStep('SIGNATURE')}
+          icon={<FaFileSignature />}
+        />
+      </div> 
       {flujoCreator.canCreate == false && <p>Seleciona almenos uno</p>}
-      <p className="CreateFlujoButton" onClick={triggerCreate}>Create</p>
-    </>
+      <button disabled={!flujoCreator.canCreate} className={`createflow-button ${submitStyle}`} onClick={triggerCreate}>Create</button>
+    </div>
   );
 }

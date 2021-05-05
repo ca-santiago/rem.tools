@@ -7,6 +7,7 @@
   background-color: rgb(243, 244, 248);
   border-radius: 10px;
   border: 0.5px solid rgb(225, 225, 225);
+
 }
 
 
@@ -16,10 +17,44 @@
   align-content: center;
   align-items: center;
   /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 150px;
 }
 
 .step-component-container {
   flex: 2;
   padding: 10px;
   /* background-color: red; */
+}
+
+.createflow-button {
+  padding: 7px;
+  background-color: rgb(50, 78, 222);
+  color: white;
+  border-radius: 4px;
+  margin: 5px;
+  border: 0px solid;
+}
+
+.btn-disabled {
+  background-color: rgb(74, 83, 126);
+}
+
+.selectable-container {
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+  justify-content: space-evenly;
+}
+
+.home-main-contaner {
+  margin: 30px;
+  justify-content: center;
+}
+
+.home-title {
+  text-align: center;
+  color: #333;
 }
