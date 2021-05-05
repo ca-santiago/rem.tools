@@ -74,6 +74,7 @@ export class FlujoController {
     @Param('id') id,
     @Body() dto: PutFaceidDTO,
   ) {
+    if (!file) throw new BadRequestException('Should provide file');
     await this.flujoService.putFaceId({
       ...dto,
       file: file.buffer,
@@ -87,7 +88,7 @@ export class FlujoController {
     FileInterceptor('file', {
       limits: { files: 1 },
       fileFilter: function (req, file, callback) {
-        let ext = path.extname(file.originalname);
+        let ext = path.extname(file?.originalname);
         if (ext !== '.jpg' && ext !== '.png')
           return callback(
             new BadRequestException('Only jpg and png files are allowed'),
@@ -103,6 +104,7 @@ export class FlujoController {
     @Param('id') id,
     @Body() dto: PutSignatureDTO,
   ) {
+    if (!file) throw new BadRequestException('Should provide file');
     const splitName = file.originalname.split('.');
     const extension = splitName[splitName.length - 1];
 
