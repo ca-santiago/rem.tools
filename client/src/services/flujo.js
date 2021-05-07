@@ -69,9 +69,26 @@ function createNewFlujo(types) {
   });
 }
 
+function GetFlujosPaginated(page = 0) {
+  return new Promise((resolve, reject) => {
+    fetch(`${baseULR}?page=${page}`)
+      .then(data => {
+        if (data.status === 200) {
+          resolve(data.json());
+        } else {
+          reject();
+        }
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+}
+
 
 export const FlujoServices = {
   getFlujoById,
   verifyFlujoToken,
   createNewFlujo,
+  GetFlujosPaginated,
 }

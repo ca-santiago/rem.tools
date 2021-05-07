@@ -1,9 +1,5 @@
 import React, { useMemo } from 'react';
-import {
-  FaIdCard,
-  FaFileSignature,
-  FaCamera
-} from 'react-icons/fa';
+import MakeStepIndicatorIcon from './makeStepIndicator';
 
 export default function StepIndicator({ steps, currStep, onClickIndicator }) {
 
@@ -14,7 +10,7 @@ export default function StepIndicator({ steps, currStep, onClickIndicator }) {
         <div
           onClick={() => onClickIndicator(s) }
           className={`step-indicator ${active}`}>
-          { makeStepIcon(s) }
+          { MakeStepIndicatorIcon(s) }
         </div>
         { index < steps.length -1 && <div className="step-line-union"></div> }
       </>
@@ -30,19 +26,4 @@ export default function StepIndicator({ steps, currStep, onClickIndicator }) {
   );
 }
 
-function makeStepIcon(type) {
-  switch(type) {
-    case "FACE": {
-      return <FaCamera />;
-    }
-    case "PERSONAL_DATA": {
-      return <FaIdCard />;
-    }
-    case "SIGNATURE": {
-      return <FaFileSignature />;
-    }
-    default: {
-      return undefined;
-    }
-  }
-}
+

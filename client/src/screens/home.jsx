@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 
 import useFlujoCreator from '../hooks/useFlujoCreator';
@@ -18,6 +18,7 @@ import {
  * Components
  */
 import SelectableStepButton from '../components/SelectableStep';
+import FlujosList from '../components/FlujosList';
 
 
 export default function CreateFlujoScreen() {
@@ -59,7 +60,7 @@ export default function CreateFlujoScreen() {
 
   return (
     <div className="home-main-container">
-      <div className="home-create-container">
+      <div className="home-create-container container-card-style1">
         <h2 className="home-title">Create a new flujo</h2>
         <div className="selectable-container">
           <SelectableStepButton
@@ -83,8 +84,9 @@ export default function CreateFlujoScreen() {
           <button disabled={!flujoCreator.canCreate} className={`createflow-button ${submitStyle}`} onClick={triggerCreate}>Create</button>
         </div> 
       </div>
-      <div className="flujos-list-container">
-        
+      <div className="flujos-list-container container-card-style1">
+        <h3>Flujos creados</h3>
+        <FlujosList />
       </div>
     </div>
   );
