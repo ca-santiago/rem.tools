@@ -15,7 +15,7 @@ export default function StepIndicator({ steps, currStep, onClickIndicator }) {
         { index < steps.length -1 && <div className="step-line-union"></div> }
       </>
     );
-  }), [steps]);
+  }), [steps, onClickIndicator, currStep]);
 
   return (
     <>

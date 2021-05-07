@@ -77,7 +77,6 @@ function FormStep({ onCompleted }) {
             rules={{ required: true }}
             render={({ field }) => (
               <PhoneInput
-                placeholder="Enter phone number"
                 className={`form-input ${errors.phone ? "form-input-error": ""}`}
                 placeholder="Celular"
                 onChange={field.onChange}

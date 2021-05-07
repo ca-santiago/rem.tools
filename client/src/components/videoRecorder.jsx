@@ -1,28 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useRecordWebcam } from 'react-record-webcam'
 import useTimer from '../hooks/useTImer';
 
-export default function VideoRecorder({ }) {
+export default function VideoRecorder() {
 
-  let timeouts = [];
+  let timeouts = useMemo(()=> [], []);
   const recordWebcam = useRecordWebcam();
   const timer = useTimer();
+
+  const clearTimeouts = useCallback(function () {
+    timeouts.forEach(t => {
+      clearTimeout(t);
+    });
+  }, [timeouts]);
 
   useEffect(()=> {
     // recordWebcam.open();
     return () => clearTimeouts();
-  }, []);
+  }, [clearTimeouts]);
   
-  function clearTimeouts() {
-    console.log('Cleaning timeouts from video recorder');
-    timeouts.forEach(t => {
-      clearTimeout(t);
-    });
-  }
-
-  function saveFile() {
-    const blob = recordWebcam.getRecording();
-  }
+  // function saveFile() {
+  //   recordWebcam.getRecording();
+  // }
 
   function startRecording() {
     timer.resetTime();
@@ -41,10 +40,10 @@ export default function VideoRecorder({ }) {
     // timer.stop();
   }
 
-  function retake() {
-    timer.start();
-    startRecording();
-  }
+  // function retake() {
+  //   timer.start();
+  //   startRecording();
+  // }
 
   return (
     <>

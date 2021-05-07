@@ -35,7 +35,7 @@ export default function CompleteFlujoScreen() {
     .finally(()=> {
       setLoading(false);
     })
-  }, []);
+  }, [id, query, history]);
 
   if(loading)
     return <p>Loading...</p>;

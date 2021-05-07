@@ -26,7 +26,7 @@ function SignatureStep({ onCompleted }) {
     setPad(() => _pad);
     _pad.onEnd = () => onEndDrawing();
     return () => {}
-  }, [canvasRef.current]);
+  }, [onEndDrawing]);
   
   function submit() {
     if(!img) return;

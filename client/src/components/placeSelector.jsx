@@ -22,7 +22,7 @@ export default function PlaceSelector({ onChange, inputStyle, containerStyle }) 
   useEffect(() => {
     const selectionCompleted = country && region;
     onChange(selectionCompleted ? `${country} ${region}` : null);
-  }, [country, region]);
+  }, [country, region, onChange]);
   
 
   return (

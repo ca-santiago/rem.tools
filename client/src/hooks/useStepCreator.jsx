@@ -17,7 +17,7 @@ export default function useStepController({ steps }) {
   const onStepCompleted = useCallback(function(value){
     console.log('Completing: ' + value);
     setCompletedSteps([...completedSteps, value]);
-  }, [setCompletedSteps]);
+  }, [setCompletedSteps, completedSteps]);
 
   const Indicator = useMemo(() => () => (
     <StepIndicator 
@@ -31,7 +31,7 @@ export default function useStepController({ steps }) {
     { key: 'FACE', component: <FaceStep onCompleted={() => onStepCompleted('FACE')} />},
     { key: 'SIGNATURE', component: <SignatureStep  onCompleted={() => onStepCompleted('SIGNATURE')} />},
     { key: 'PERSONAL_DATA', component: <FormStep  onCompleted={() => onStepCompleted('PERSONAL_DATA')} />}
-  ], []);
+  ], [onStepCompleted]);
 
   const StepComponent = useMemo(() => () => (
     <StepSwitcher

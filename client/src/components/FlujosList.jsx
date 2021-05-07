@@ -36,21 +36,21 @@ export default function FlujosList() {
 
 
 function renderFlujo(flujo, index, totalLen) {
-    const {} = flujo;
+    const { id, createdAt, status, types} = flujo;
 
     return (
-      <div key={flujo.id} className="flujo-card-container">
+      <div key={id} className="flujo-card-container">
         <div className="flujo-data-container">
           <div className="flujo-body">
-            <p>{new Date(flujo.createdAt).toDateString()}</p>
+            <p>{new Date(createdAt).toDateString()}</p>
           </div>
           <div className="flujo-card-status">
-            {MakeStatusIcon(flujo.status)}
+            {MakeStatusIcon(status)}
           </div>
         </div>
         <div className="types-container">
           {
-            flujo.types.map((item) => {
+            types.map((item) => {
               return (
                 <div className="type-icon-contaner">
                   {MakeStepIndicatorIcon(item)}

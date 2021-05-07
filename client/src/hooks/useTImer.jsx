@@ -10,7 +10,7 @@ export default function useTimer() {
       console.log('Cleaning');
       clearTimeout(timeout);
     }
-  }, []);
+  }, [timeout]);
 
   function start() {
     timeout = setTimeout(()=> {
