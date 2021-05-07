@@ -30,6 +30,11 @@ import createLocaltionHeaderString from '../helpers/createLocation';
 export class FlujoController {
   constructor(private flujoService: FlujoService) {}
 
+  @Get('/ping')
+  ping() {
+    return 'pong';
+  }
+
   @Post()
   async create(
     @Body() dto: CreateFlujoDTO,
