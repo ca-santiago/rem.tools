@@ -68,6 +68,19 @@ export class FlujoService {
     return this.flujoRepo.findById(id);
   }
 
+  async findAll(page = 0) {
+    const results = await this.flujoRepo.findAll(page);
+    return {
+      page,
+      amount: 20,
+      results,
+    }
+  }
+
+
+  /**
+   * Helper method
+   */
   async findFlujoAndVerifyType(id: string, type: string): Promise<Flujo> {
     const flujoOrNull = await this.flujoRepo.findById(id);
 
