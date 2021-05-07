@@ -48,7 +48,6 @@ export class FlujoRepo {
       .skip(offset * 20)
       .sort([['createdAt', -1]])
       .exec();
-    console.log({ results });
     return results.map((item) =>
       this.flujoMapper.fromRepoToPublicDTO(item as any),
     );
