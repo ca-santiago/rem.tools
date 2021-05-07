@@ -46,7 +46,7 @@ export class FlujoRepo {
       .find()
       .limit(20)
       .skip(offset * 20)
-      .sort('createdAt')
+      .sort([['createdAt', -1]])
       .exec();
     console.log({ results });
     return results.map((item) =>
