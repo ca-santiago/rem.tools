@@ -80,7 +80,7 @@ export default function CreateFlujoScreen() {
           />
         </div>
         <div className="create-btn-container">
-          {flujoCreator.canCreate == false && <p>Seleciona almenos uno</p>}
+          {flujoCreator.canCreate === false && <p>Seleciona almenos uno</p>}
           <button disabled={!flujoCreator.canCreate} className={`createflow-button ${submitStyle}`} onClick={triggerCreate}>Create</button>
         </div> 
       </div>

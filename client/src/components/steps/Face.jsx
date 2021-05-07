@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import VideoPreview from '../videoPreview';
 import VideoRecorder from '../videoRecorder';
 

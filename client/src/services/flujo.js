@@ -1,4 +1,4 @@
-const baseULR = 'http://localhost:3300/flujos';
+const baseULR = `${process.env.REACT_APP_API_URL}/flujos`;
 
 function verifyFlujoToken(token) {
   return new Promise((res, rej) => {

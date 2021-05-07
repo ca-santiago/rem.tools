@@ -1,7 +1,6 @@
 import axios from 'axios';
-import Form from '../components/steps/Form';
 
-const baseURL = 'http://localhost:3300/flujos';
+const baseURL = `${process.env.REACT_APP_API_URL}/flujos`;
 
 
 function CreateFaceId({ flujoId, token, file, filename }) {
@@ -35,13 +34,13 @@ function CreatePersonalData({ token, flujoId, email, fullname, birthDate, bornPl
     })
       .then(result => {
         console.log('Status: ', result.status);
-        if (result.status == 400) {
+        if (result.status === 400) {
           return result.json().then(badRequest => {
             console.log(badRequest)
             reject(badRequest);
           })
         }
-        if (result.ok == false) return reject();
+        if (result.ok === false) return reject();
         resolve();
       })
       .catch(reject);
@@ -59,7 +58,7 @@ function CreateSignature({ flujoId, token, file, filename }) {
         // TODO: Remove logs
         // console.log('Signature creation result');
         // console.log({ result });
-        if (result.status == 400) {
+        if (result.status === 400) {
           result.json().then(payload => {
             console.log(payload);
           })
