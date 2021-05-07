@@ -11,6 +11,7 @@ import {
   Res,
   UploadedFile,
   UseInterceptors,
+  Query,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import {
@@ -23,6 +24,7 @@ import { FlujoService } from '../services/flujo';
 import * as path from 'path';
 import { Request, Response } from 'express';
 import createLocaltionHeaderString from '../helpers/createLocation';
+
 
 @Controller('flujos')
 export class FlujoController {
@@ -42,6 +44,13 @@ export class FlujoController {
     );
     res.location(resourceLocaltion);
     res.status(201).json(servicePayload).end();
+  }
+
+  @Get()
+  async GetAll(@Query('page') page) {
+    const _page = page > 0 ? page : 0;
+    const result = await this.flujoService.findAll(_page as number);
+    return result;
   }
 
   @Get(':id')
