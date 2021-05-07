@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './stepButton.css';
+import './selectablebutton.css';
 
 export default function SelectableStepButton({ title, icon, onSelectChange, disable }) {
 
@@ -16,7 +16,9 @@ export default function SelectableStepButton({ title, icon, onSelectChange, disa
         className={`selectable-step-container ${returnStyle(disable," step-disable")} ${returnStyle(active," step-active")}`}
       >
         <p className="step-title">{title}</p>
-        {icon}
+        <div className="icon-container">
+          {icon}
+        </div>
       </div>
     </>
   );

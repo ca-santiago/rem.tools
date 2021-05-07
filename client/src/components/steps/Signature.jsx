@@ -55,13 +55,25 @@ function SignatureStep({ onCompleted }) {
 
   return (
     <>
-      <h3>Firma autógrafa</h3>
-      <canvas ref={canvasRef} className="canvas-container"></canvas>
-      <div>
-        <button onClick={()=> resetCanvas()}>Restablecer</button>
+      <h3 className="step-component-title">Firma autógrafa</h3>
+      <div className="canvas-container">
+        <canvas ref={canvasRef} className="canvas"></canvas>
+        <div className="canvas-actions">
+          <div>
+            <button 
+              disabled={pad?.isEmpty()}
+              className={`canvas-action-btn ${pad?.isEmpty() ? "disabled": ""}`}
+              onClick={()=> resetCanvas()}
+            >Restablecer</button>
+          </div>
+        </div>
       </div>
-      <div>
-        <button disabled={!img} onClick={()=> submit()}>Enviar</button>
+      <div className="create-btn-container">
+        <button 
+          disabled={!img}
+          onClick={()=> submit()}
+          className={`createflow-button ${img ? "" : "btn-disabled"}`}
+        >Enviar</button>
       </div>
     </>
   );

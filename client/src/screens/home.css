@@ -1,0 +1,26 @@
+
+.home-main-container {
+  justify-content: center;
+  max-width: 60%;
+  margin: 40px auto;
+}
+
+.home-create-container {
+  justify-content: center;
+  box-shadow: 0 1px 5px -3px #333;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.home-title {
+  font-weight: 400;
+  text-align: center;
+  color: #333;
+}
+
+.flujos-list-container {
+  flex: 1;
+  border: 10px;
+  background-color: white;
+}

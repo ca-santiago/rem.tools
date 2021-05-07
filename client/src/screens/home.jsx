@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import SelectableStepButton from '../components/stepButtons';
+
 import useFlujoCreator from '../hooks/useFlujoCreator';
 import { FlujoServices } from '../services/flujo';
+
+/***
+ * Styles
+ */
+import './home.css';
 import {
   FaIdCard,
   FaFileSignature,
   FaCamera
 } from 'react-icons/fa';
+
+/**
+ * Components
+ */
+import SelectableStepButton from '../components/SelectableStep';
 
 
 export default function CreateFlujoScreen() {
@@ -48,27 +58,34 @@ export default function CreateFlujoScreen() {
   const submitStyle = !flujoCreator.canCreate ? "btn-disabled" : "";
 
   return (
-    <div className="home-main-contaner">
-      <h2 className="home-title">Create a new flujo</h2>
-      <div className="selectable-container">
-        <SelectableStepButton
-          title="Validación con cámara"
-          onSelectChange={toggleSelectStep('FACE')}
-          icon={<FaCamera />}
-        />
-        <SelectableStepButton
-          title="Formulario"
-          onSelectChange={toggleSelectStep('PERSONAL_DATA')}
-          icon={<FaIdCard />}
+    <div className="home-main-container">
+      <div className="home-create-container">
+        <h2 className="home-title">Create a new flujo</h2>
+        <div className="selectable-container">
+          <SelectableStepButton
+            title="Validación con cámara"
+            onSelectChange={toggleSelectStep('FACE')}
+            icon={<FaCamera />}
           />
-        <SelectableStepButton
-          title="Firma autógrafa"
-          onSelectChange={toggleSelectStep('SIGNATURE')}
-          icon={<FaFileSignature />}
-        />
-      </div> 
-      {flujoCreator.canCreate == false && <p>Seleciona almenos uno</p>}
-      <button disabled={!flujoCreator.canCreate} className={`createflow-button ${submitStyle}`} onClick={triggerCreate}>Create</button>
+          <SelectableStepButton
+            title="Formulario"
+            onSelectChange={toggleSelectStep('PERSONAL_DATA')}
+            icon={<FaIdCard />}
+            />
+          <SelectableStepButton
+            title="Firma autógrafa"
+            onSelectChange={toggleSelectStep('SIGNATURE')}
+            icon={<FaFileSignature />}
+          />
+        </div>
+        <div className="create-btn-container">
+          {flujoCreator.canCreate == false && <p>Seleciona almenos uno</p>}
+          <button disabled={!flujoCreator.canCreate} className={`createflow-button ${submitStyle}`} onClick={triggerCreate}>Create</button>
+        </div> 
+      </div>
+      <div className="flujos-list-container">
+        
+      </div>
     </div>
   );
 }

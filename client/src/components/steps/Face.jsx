@@ -24,7 +24,7 @@ function FaceStep({ onCompleted }) {
   
   return (
     <>
-      <h3>Validación con cámara</h3>
+      <h3 className="step-component-title">Validación con cámara</h3>
       <VideoRecorder />
       <input type="file" accept="video/mp4" onChange={onFileChange} />
       <button onClick={submit} disabled={disabled} >Completar</button>

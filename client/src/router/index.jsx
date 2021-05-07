@@ -3,11 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
-import CreateFlujoScreen from '../view/home';
-import CompleteFlujoScreen from '../view/flujoSteps';
+import CreateFlujoScreen from '../screens/home';
+import CompleteFlujoScreen from '../screens/flujoSteps';
 
 export default function MainRouter() {
   return (

@@ -55,7 +55,7 @@ function FormStep({ onCompleted }) {
   
   return (
     <>
-      <h3>Formulario de datos personales</h3>
+      <h3 className="step-component-title">Formulario de datos personales</h3>
       <div className="form-container">
         <div className="input-group">
           <input
@@ -128,10 +128,12 @@ function FormStep({ onCompleted }) {
           />
           {errors.place && <p className="input-error">Seleccione una lugar</p>}
         </div>
-        <button
-          className={`form-submit ${canSubmit ? "": "form-submit-disabled"}`}
-          onClick={handleSubmit(submitForm)}
-        >Enviar</button>
+        <div className="create-btn-container">
+          <button
+            className={`createflow-button ${canSubmit ? "": "btn-disabled"}`}
+            onClick={handleSubmit(submitForm)}
+          >Enviar</button>
+        </div>
       </div>
     </>
   );

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+/***
+ * Hooks
+ */
 import useQuery from '../hooks/useQuery';
-import useRenderCounter from '../hooks/useRenderCounter';
+import { useHistory, useParams } from 'react-router';
+
+/**
+ * Components
+ */
 import { FlujoServices } from '../services/flujo';
 import StepResolverView from './StepResolver';
 
