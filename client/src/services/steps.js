@@ -11,8 +11,7 @@ function CreateFaceId({ flujoId, token, file, filename }) {
     form.append('file', file, filename);
     fetch(`${baseURL}/${flujoId}/steps/faceid`, form)
       .then((result) => {
-        console.log('File creation result');
-        console.log({ result });
+        console.log('Status: ', result.status);
         if (result.ok) {
           return resolve();
         }
@@ -24,21 +23,26 @@ function CreateFaceId({ flujoId, token, file, filename }) {
 
 function CreatePersonalData({ token, flujoId, email, fullname, birthDate, bornPlace, phone }) {
   return new Promise((resolve, reject) => {
-    fetch(`${baseURL}/${flujoId}/steps/signature`, {
+    fetch(`${baseURL}/${flujoId}/steps/info`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        accessToken: token, fullname, birthDate,
+        accessToken: token, fullName: fullname, birthDate,
         bornPlace, phone, email,
       }),
     })
-      .then(res => {
-        console.log('Result of putting personal data: ');
-        console.log({ res });
-
-        if (res.ok == false) reject();
+      .then(result => {
+        console.log('Status: ', result.status);
+        if (result.status == 400) {
+          return result.json().then(badRequest => {
+            console.log(badRequest)
+            reject(badRequest);
+          })
+        }
+        if (result.ok == false) return reject();
+        resolve();
       })
       .catch(reject);
   });
