@@ -94,9 +94,7 @@ function createNewFlujo(types) {
 function GetFlujosPaginated(page = 0) {
   console.log({ paginated: baseULR });
   return new Promise((resolve, reject) => {
-    fetch(`${baseULR}?page=${page}`, {
-      mode: 'no-cors',
-    })
+    fetch(`${baseULR}`)
       .then(data => {
         if (data.status === 200) {
           resolve(data.json());
