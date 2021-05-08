@@ -33,8 +33,9 @@ function FormStep({ onCompleted }) {
   } = useForm();
 
   const canSubmit = useMemo(() => {
-    return errors && Object.keys(errors).length === 0;
-  }, [errors]);
+    const res = !!errors && Object.keys(errors).length < 1;
+    return res;
+  });
 
   function submitForm(data) {
     StepServices.CreatePersonalData({
@@ -50,7 +51,9 @@ function FormStep({ onCompleted }) {
       console.log({ payload });
       onCompleted();
     })
-    .catch(err => {})
+    .catch(err => {
+      console.log(err);
+    })
   }
   
   return (
@@ -64,6 +67,7 @@ function FormStep({ onCompleted }) {
               ...register("fullname", {
                 required: true,
                 maxLength: 64, 
+                minLength: 4,
               })
             }
             placeholder="Eje: Carmen Santiago"
@@ -78,7 +82,7 @@ function FormStep({ onCompleted }) {
             render={({ field }) => (
               <PhoneInput
                 className={`form-input ${errors.phone ? "form-input-error": ""}`}
-                placeholder="Celular"
+                placeholder="Eje: +52 123 456 7890"
                 onChange={field.onChange}
                 value={field.value}
               />
@@ -129,6 +133,7 @@ function FormStep({ onCompleted }) {
         </div>
         <div className="create-btn-container">
           <button
+            disabled={!canSubmit}
             className={`createflow-button ${canSubmit ? "": "btn-disabled"}`}
             onClick={handleSubmit(submitForm)}
           >Enviar</button>

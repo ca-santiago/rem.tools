@@ -15,18 +15,18 @@ function SignatureStep({ onCompleted }) {
   const [pad, setPad] = useState(null); 
   const [img, setImg] = useState(null);
 
-  const onEndDrawing = useCallback(function() {
+  function onEndDrawing() {
     if(!pad) return;
     const imgURL = pad.toDataURL("image/jpeg");
     setImg(imgURL);
-  }, [pad]);
+  }
 
   useEffect(()=> {
     const _pad = new SignaturePad(canvasRef.current, { backgroundColor: 'white' });
     setPad(() => _pad);
     _pad.onEnd = () => onEndDrawing();
     return () => {}
-  }, [onEndDrawing]);
+  }, [canvasRef.current]);
   
   function submit() {
     if(!img) return;

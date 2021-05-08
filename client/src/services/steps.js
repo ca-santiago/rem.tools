@@ -23,7 +23,6 @@ function CreateFaceId({ flujoId, token, file, filename }) {
 function CreatePersonalData({ token, flujoId, email, fullname, birthDate, bornPlace, phone }) {
   return new Promise((resolve, reject) => {
     fetch(`${baseURL}/${flujoId}/steps/info`, {
-      mode: 'no-cors',
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
