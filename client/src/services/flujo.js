@@ -1,7 +1,7 @@
 const baseULR = `${process.env.REACT_APP_API_URL}/flujos`;
 console.log(baseULR);
 function verifyFlujoToken(token) {
-  return new Promise((res, rej) => {
+  return new Promise((resolve, reject) => {
     fetch(`${baseULR}/`, {
       method: 'POST',
       body: JSON.stringify({
@@ -17,13 +17,13 @@ function verifyFlujoToken(token) {
           })
         }
         if (result.status === 200) {
-          res();
+          resolve();
         } else {
-          rej();
+          reject();
         }
       })
       .catch(err => {
-        rej();
+        reject();
       });
   })
 }
