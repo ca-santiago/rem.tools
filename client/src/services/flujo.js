@@ -51,7 +51,7 @@ function getFlujoById(id) {
         }
       })
       .catch(err => {
-        // console.log(err);
+        console.log(err);
         reject();
       });
   });
