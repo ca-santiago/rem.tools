@@ -56,9 +56,8 @@ function CreateSignature({ flujoId, token, file, filename }) {
 
     axios.put(`${baseURL}/${flujoId}/steps/signature`, form)
       .then((result) => {
-        // TODO: Remove logs
-        // console.log('Signature creation result');
-        // console.log({ result });
+        console.log('Signature creation result');
+        console.log({ result });
         if (result.status === 400) {
           result.json().then(payload => {
             console.log(payload);
