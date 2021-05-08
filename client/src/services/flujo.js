@@ -63,7 +63,6 @@ function createNewFlujo(types) {
   return new Promise((resolve, reject) => {
     fetch(`${baseULR}`, {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
