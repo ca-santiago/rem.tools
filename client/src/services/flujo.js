@@ -8,8 +8,15 @@ function verifyFlujoToken(token) {
         token
       })
     })
-      .then(data => {
-        if (data.status === 200) {
+      .then(result => {
+        console.log('Status: ', result.status);
+        if (result.status === 400) {
+          return result.json().then(badRequest => {
+            console.log(badRequest)
+            reject(badRequest);
+          })
+        }
+        if (result.status === 200) {
           res();
         } else {
           rej();
@@ -29,9 +36,16 @@ function getFlujoById(id) {
         'Content-Type': 'application/json'
       }
     })
-      .then(data => {
-        if (data.status === 200) {
-          resolve(data);
+      .then(result => {
+        console.log('Status: ', result.status);
+        if (result.status === 400) {
+          return result.json().then(badRequest => {
+            console.log(badRequest)
+            reject(badRequest);
+          })
+        }
+        if (result.status === 200) {
+          resolve(result);
         } else {
           reject();
         }
@@ -57,15 +71,22 @@ function createNewFlujo(types) {
         types,
       })
     })
-      .then(data => {
-        if (data.status === 201) {
-          resolve(data);
+      .then(result => {
+        console.log('Status: ', result.status);
+        if (result.status === 400) {
+          return result.json().then(badRequest => {
+            console.log(badRequest)
+            reject(badRequest);
+          })
+        }
+        if (result.status === 201) {
+          resolve(result);
         } else {
           reject();
         }
       })
       .catch(err => {
-        // console.log(err);
+        console.log(err);
         reject();
       });
   });
