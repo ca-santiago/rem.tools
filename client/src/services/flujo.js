@@ -49,6 +49,7 @@ function createNewFlujo(types) {
   return new Promise((resolve, reject) => {
     fetch(`${baseULR}`, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -73,7 +74,9 @@ function createNewFlujo(types) {
 function GetFlujosPaginated(page = 0) {
   console.log({ paginated: baseULR });
   return new Promise((resolve, reject) => {
-    fetch(`${baseULR}?page=${page}`)
+    fetch(`${baseULR}?page=${page}`, {
+      mode: 'no-cors',
+    })
       .then(data => {
         if (data.status === 200) {
           resolve(data.json());
