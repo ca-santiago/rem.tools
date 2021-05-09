@@ -121,7 +121,7 @@ export class FlujoService {
     // Let's save the file
     const fileURI = await this.storageService.saveFile(
       dto.file,
-      '.mp4',
+      dto.ext,
       dto.flujoId + '-faceid',
     );
 
