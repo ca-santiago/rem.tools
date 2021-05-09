@@ -1,37 +1,44 @@
 import { useEffect, useState } from "react";
 
-export default function useTimer() {
+export default function useTimer(onTimerStop) {
   
-  const [time, setTime] = useState(0);
-  let timeout = undefined;
-
-  useEffect(()=> {
-    return () => {
-      console.log('Cleaning');
-      clearTimeout(timeout);
-    }
-  }, [timeout]);
+  const [time, setTime] = useState(10);
+  const [timer, setTimer] = useState(null);
 
   function start() {
-    timeout = setTimeout(()=> {
-      setTime(prev => prev + 1);
-    }, 1000);
+    reset();
+    if(timer === null) {
+      const _timer = setInterval(countDown, 1000);
+      setTimer(_timer);
+    }
   }
 
-  function stop() {
-    clearTimeout(timeout);
+  useEffect(() => {
+    return () => {
+      if(timer !== null) clearInterval(timer);
+    }
+  }, [timer]);
+
+  function countDown() {
+    setTime(prev => prev - 1);
   }
 
-  function resetTime() {
-    stop();
-    setTime(0);
-  }
+  useEffect(() => {
+    if(time < 0) {
+      onTimerStop?.();
+      reset();
+    }
+  }, [time]);
 
+  function reset() {
+    setTime(10);
+    if(timer !== null) clearInterval(timer);
+    setTimer(null);
+  }
 
   return {
     time,
-    resetTime,
-    stop,
+    reset,
     start,
   };
 };

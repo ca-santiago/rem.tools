@@ -16,6 +16,8 @@
     "react-record-webcam": "0.0.11",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-video-recorder": "^3.18.0",
+    "react-webcam": "^5.2.3",
     "signature_pad": "^3.0.0-beta.4",
     "web-vitals": "^1.1.1"
   },

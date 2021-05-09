@@ -8,15 +8,25 @@ function CreateFaceId({ flujoId, token, file, filename }) {
     const form = new FormData();
     form.set('accessToken', token);
     form.append('file', file, filename);
-    fetch(`${baseURL}/${flujoId}/steps/faceid`, form)
+
+    axios.put(`${baseURL}/${flujoId}/steps/faceid`, form)
       .then((result) => {
-        console.log('Status: ', result.status);
-        if (result.ok) {
-          return resolve();
+        console.log('Faceid creation result');
+        console.log({ result });
+        if (result.status === 400) {
+          result.json().then(payload => {
+            console.log(payload);
+          })
         }
-        reject();
+        if (result.status !== 200) {
+          reject();
+        }
+        resolve(result);
       })
-      .catch(reject)
+      .catch(err => {
+        console.log({ err });
+        reject(err)
+      });
   });
 }
 
@@ -62,7 +72,7 @@ function CreateSignature({ flujoId, token, file, filename }) {
             console.log(payload);
           })
         }
-        if(result.status !== 201) {
+        if (result.status !== 201) {
           reject();
         }
         resolve(result);
