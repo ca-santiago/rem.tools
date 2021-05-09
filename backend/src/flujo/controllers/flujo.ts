@@ -73,11 +73,16 @@ export class FlujoController {
       limits: { files: 1 },
       fileFilter: function (req, file, callback) {
         let ext = path.extname(file.originalname);
-        if (ext !== '.mp4')
+        console.log(ext);
+        req.ext = ext;
+        if (ext !== '.mp4' && ext !== '.webm')
           return callback(
-            new BadRequestException('Only mp4 files are allowed'),
+            new BadRequestException('Only mp4/webm files are allowed'),
             false,
           );
+        if(ext === '.webm') {
+          //TODO: Convert file to mp4
+        }
 
         callback(null, true);
       },
@@ -87,12 +92,14 @@ export class FlujoController {
     @UploadedFile() file: Express.Multer.File,
     @Param('id') id,
     @Body() dto: PutFaceidDTO,
+    @Req() req
   ) {
     if (!file) throw new BadRequestException('Should provide file');
     await this.flujoService.putFaceId({
       ...dto,
       file: file.buffer,
       flujoId: id,
+      ext: req['ext'],
     });
     return;
   }

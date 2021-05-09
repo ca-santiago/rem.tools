@@ -34,6 +34,8 @@ export class PutFaceidDTO {
   flujoId: string;
 
   file: Buffer;
+
+  ext: string;
 }
 
 export class PutPersonalDataDTO {
