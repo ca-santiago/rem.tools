@@ -67,7 +67,6 @@ function FaceStep({ onCompleted }) {
     setRecordedChunks([]);
   }
   
-  
   const submit = useCallback(function () {
     setProcessing(true);
     const file = getFile();

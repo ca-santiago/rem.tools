@@ -16,16 +16,20 @@ export default function useStepController({ steps }) {
 
   const onStepCompleted = useCallback(function(value){
     console.log('Completing: ' + value);
+    if(completedSteps.includes(value)) return;
     setCompletedSteps([...completedSteps, value]);
-  }, [setCompletedSteps, completedSteps]);
+  }, [setCompletedSteps]);
+
+  const canFinish = useMemo(() => completedSteps.length >= 3, [completedSteps]);
 
   const Indicator = useMemo(() => () => (
-    <StepIndicator 
+    <StepIndicator
+      completedSteps={completedSteps}
       steps={steps}
       onClickIndicator={clickIndicator}
       currStep={currStep}
     />
-  ),[steps, clickIndicator, currStep]);
+  ),[steps, clickIndicator, currStep, completedSteps]);
 
   const stepsComponents = useMemo(()=> [
     { key: 'FACE', component: <FaceStep onCompleted={() => onStepCompleted('FACE')} />},
@@ -43,5 +47,6 @@ export default function useStepController({ steps }) {
   return {
     Indicator,
     StepComponent,
+    canFinish
   }
 }

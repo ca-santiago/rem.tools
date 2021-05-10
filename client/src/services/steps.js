@@ -72,7 +72,7 @@ function CreateSignature({ flujoId, token, file, filename }) {
             console.log(payload);
           })
         }
-        if (result.status !== 201) {
+        if (result.status !== 200) {
           reject();
         }
         resolve(result);
