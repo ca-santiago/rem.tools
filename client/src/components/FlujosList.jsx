@@ -10,18 +10,14 @@ export default function FlujosList() {
   useEffect(() => {
     FlujoServices.GetFlujosPaginated()
     .then(({results}) => {
-      console.log(results);
       setFlujos(results);
+      setLoading(false);
     })
     .catch(err => {
       console.error(err);
-    })
-    .finally(() => {
-      setTimeout(()=> {
-        setLoading(false);
-      }, 1000)
+      setLoading(false);
     });
-  },[]);
+  }, []);
 
   if(loading) return <p>Cargando flujos...</p>
 
@@ -29,17 +25,15 @@ export default function FlujosList() {
 
   return (
     <>
-      { flujos.map((item, index, arr) => renderFlujo(item,index,arr.length)) }
+      { flujos.map((item, index, arr) => renderFlujo(item, index, arr.length)) }
     </>
   );
 }
 
-
 function renderFlujo(flujo, index, totalLen) {
     const { id, createdAt, status, types} = flujo;
-
     return (
-      <div key={id} className="flujo-card-container">
+      <div key={id} key={createdAt} className="flujo-card-container">
         <div className="flujo-data-container">
           <div className="flujo-body">
             <p>{new Date(createdAt).toDateString()}</p>
@@ -50,13 +44,7 @@ function renderFlujo(flujo, index, totalLen) {
         </div>
         <div className="types-container">
           {
-            types.map((item) => {
-              return (
-                <div className="type-icon-contaner">
-                  {MakeStepIndicatorIcon(item)}
-                </div>
-              )
-            })
+            types.map(FlujoStepIcon)
           }
         </div>
         {
@@ -67,4 +55,12 @@ function renderFlujo(flujo, index, totalLen) {
         }
       </div>
     );
+}
+
+function FlujoStepIcon(item) {
+  return (
+    <div key={item} className="type-icon-contaner">
+    {MakeStepIndicatorIcon(item)}
+    </div>
+  );
 }

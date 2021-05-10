@@ -1,5 +1,5 @@
 const baseULR = `${process.env.REACT_APP_API_URL}/flujos`;
-console.log(baseULR);
+
 function verifyFlujoToken(token) {
   return new Promise((resolve, reject) => {
     fetch(`${baseULR}/`, {
@@ -23,7 +23,8 @@ function verifyFlujoToken(token) {
         }
       })
       .catch(err => {
-        reject();
+        console.log(err);
+        reject(err);
       });
   })
 }
@@ -92,7 +93,7 @@ function createNewFlujo(types) {
 }
 
 function GetFlujosPaginated(page = 0) {
-  console.log({ paginated: baseULR });
+
   return new Promise((resolve, reject) => {
     fetch(`${baseULR}`)
       .then(data => {

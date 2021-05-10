@@ -85,7 +85,7 @@ export default function CreateFlujoScreen() {
         </div> 
       </div>
       <div className="flujos-list-container container-card-style1">
-        <h3>Flujos creados</h3>
+        <h3 key='flujo-list-title'>Flujos creados</h3>
         <FlujosList />
       </div>
     </div>
