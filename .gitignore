@@ -5,6 +5,11 @@ dist/
 
 public/
 
+backend/
+client/
+
+.env
+
 # Logs
 logs
 *.log
